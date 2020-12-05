@@ -44,40 +44,30 @@ func (d *Day1) ReadFile(path string) error {
 	return nil
 }
 
-// Part1 executs part 1 of of this day's puzzle
+// Part1 executes part 1 of of this day's puzzle
 func (d *Day1) Part1() {
 	fmt.Println("Day 1 Part 1")
-	err := d.ReadFile("1-1.txt")
-	if err != nil {
-		panic(err)
-	}
-
 	m := map[int]bool{}
 	for _, e := range d.Entries {
 		m[e] = true
-		if m[2020-e] == true {
+		if m[2020-e] {
 			fmt.Printf("%d * %d = %d\n", e, 2020-e, e*(2020-e))
+			return
 		}
 	}
 }
 
-// Part2 executs part 2 of of this day's puzzle
+// Part2 executes part 2 of of this day's puzzle
 func (d *Day1) Part2() {
-	fmt.Println("Day 1 Part 2")
-	err := d.ReadFile("1-1.txt")
-	if err != nil {
-		panic(err)
-	}
 	for _, i := range d.Entries {
 		t := 2020 - i
 		m := map[int]bool{}
 		for _, e := range d.Entries {
 			m[e] = true
-			if m[t-e] == true {
+			if m[t-e] {
 				fmt.Printf("%d * %d * %d = %d\n", e, t-i, i, i*e*(t-e))
 				return
 			}
 		}
 	}
-
 }
