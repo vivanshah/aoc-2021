@@ -21,7 +21,7 @@ func main() {
 	if dayToRun != nil && *dayToRun != -1 {
 		days = []day.Day{day.GetDay(*dayToRun)}
 	} else {
-		days = day.GetDays()
+		days = []day.Day{day.GetToday()}
 	}
 	fmt.Println("Running ", len(days), " days")
 	for i, d := range days {

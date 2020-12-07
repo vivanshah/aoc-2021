@@ -34,7 +34,6 @@ func (d *Day4) ReadFile(path string) error {
 	}
 	defer file.Close()
 
-	// Start reading from the file with a reader.
 	reader := bufio.NewReader(file)
 	var line string
 	var pp Passport

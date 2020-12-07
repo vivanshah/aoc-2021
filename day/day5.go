@@ -111,7 +111,7 @@ func GetSeatID(row, col int) int {
 
 // Part2 executes part 2 of of this day's puzzle
 func (d *Day5) Part2() {
-	fmt.Println("Day 5 Part 1")
+	fmt.Println("Day 5 Part 2")
 	ids := map[int]bool{}
 	for _, p := range d.Passes {
 		row, col := GetSeat(p)

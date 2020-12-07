@@ -9,16 +9,21 @@ type Day interface {
 	Part2()
 }
 
+// GetToday calculates the current day of the month
+// and returns the solution for that day
 func GetToday() Day {
 	_, _, d := time.Now().Date()
 	return GetDay(d)
 }
 
+// GetDay takes a day of the month and returns the
+// solution for that day
 func GetDay(d int) Day {
 	days := GetDays()
 	return days[d-1]
 }
 
+// GetDays returns all the solutions in order
 func GetDays() []Day {
 	return []Day{
 		&Day1{},
@@ -26,5 +31,7 @@ func GetDays() []Day {
 		&Day3{},
 		&Day4{},
 		&Day5{},
+		&Day6{},
+		&Day7{},
 	}
 }
