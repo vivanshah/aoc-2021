@@ -33,5 +33,6 @@ func GetDays() []Day {
 		&Day5{},
 		&Day6{},
 		&Day7{},
+		&Day8{},
 	}
 }
