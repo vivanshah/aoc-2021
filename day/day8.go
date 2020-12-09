@@ -36,9 +36,10 @@ func (d *Day8) Part1() {
 	fmt.Println("Day 8 Part 1")
 	var acc int64
 	acc = 0
-	seen := map[int]int{}
+	seen := map[int]bool{}
+	seenSwappable := map[int]bool{}
 	for x := 0; x < len(d.Instructions); x++ {
-		if seen[x] != 0 {
+		if seen[x] {
 			break
 		}
 
@@ -46,24 +47,23 @@ func (d *Day8) Part1() {
 		instruction := parts[0]
 		switch instruction {
 		case "acc":
-			seen[x] = 1
+			seen[x] = true
 			b, _ := strconv.Atoi(parts[1])
 			acc = acc + int64(b)
 		case "jmp":
-			seen[x] = -1
+			seen[x] = true
+			seenSwappable[x] = true
 			b, _ := strconv.Atoi(parts[1])
 			x = x + b - 1
 		case "nop":
-			seen[x] = -1
+			seen[x] = true
+			seenSwappable[x] = true
 			continue
 		}
 	}
 	fmt.Println(acc)
 	fmt.Println("Day 8 Part 2")
-	for k, v := range seen {
-		if v == 1 {
-			continue
-		}
+	for k := range seenSwappable {
 		s2 := map[int]bool{}
 		acc := 0
 		loop := false
