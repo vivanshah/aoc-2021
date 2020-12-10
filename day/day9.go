@@ -33,24 +33,25 @@ func (d *Day9) ReadFile(path string) error {
 // Part1 executes part 1 of of this day's puzzle
 func (d *Day9) Part1() {
 	fmt.Println("Day 9 Part 1")
-	for x := 25; x < len(d.Input); x++ {
-		if !d.VerifyValue(x) {
+	preambleSize := 25
+	for x := preambleSize; x < len(d.Input); x++ {
+		if !d.VerifyValue(x, preambleSize) {
 			fmt.Println(d.Input[x])
+			break
 		}
 	}
 }
 
-func (d *Day9) VerifyValue(position int) bool {
-
+func (d *Day9) VerifyValue(position int, preambleSize int) bool {
 	toCheck := d.Input[position]
-	checkNums := d.Input[position-25 : position]
-
-	for _, v := range checkNums {
-		for _, y := range checkNums {
-			if v+y == toCheck {
-				return true
-			}
+	seen := map[int]bool{}
+	for x := position - preambleSize; x < position; x++ {
+		t := toCheck - d.Input[x]
+		_, exists := seen[t]
+		if exists {
+			return true
 		}
+		seen[d.Input[x]] = true
 	}
 	return false
 }
