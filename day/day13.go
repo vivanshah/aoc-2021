@@ -42,7 +42,7 @@ func (d *Day13) ReadFile(path string) error {
 		}
 
 	}
-	fmt.Println(d.Buses)
+	//fmt.Println(d.Buses)
 	fmt.Println("Read ", len(lines), " Instructions")
 	return nil
 }
@@ -55,7 +55,7 @@ func (d *Day13) Part1() {
 	for _, b := range d.Buses {
 		m[b] = b - (d.Earliest % b)
 	}
-	fmt.Println(m)
+	//fmt.Println(m)
 	for i := 939; i < math.MaxInt32; i++ {
 		for _, b := range d.Buses {
 			s := m[b]
@@ -76,7 +76,7 @@ func (d *Day13) Part2() {
 
 	e := map[int]int{}
 	maxBus := 0
-	fmt.Println(d.AllBuses)
+	//	fmt.Println(d.AllBuses)
 	for i, b := range d.AllBuses {
 		if b == "x" {
 			continue

@@ -40,7 +40,7 @@ func (d *Day6) ReadFile(path string) error {
 		if len(line) > 0 {
 			g.Members = g.Members + 1
 		}
-		fmt.Println(line)
+		//	fmt.Println(line)
 		for _, c := range line {
 			if seen[c] == 0 {
 				g.UniqueAnswers++
@@ -53,8 +53,8 @@ func (d *Day6) ReadFile(path string) error {
 					g.AllAnswers = g.AllAnswers + 1
 				}
 			}
-			fmt.Println(seen)
-			fmt.Println(g)
+			//fmt.Println(seen)
+			//	fmt.Println(g)
 			d.Groups = append(d.Groups, g)
 			break
 		}
@@ -64,8 +64,8 @@ func (d *Day6) ReadFile(path string) error {
 					g.AllAnswers = g.AllAnswers + 1
 				}
 			}
-			fmt.Println(seen)
-			fmt.Println(g)
+			//	fmt.Println(seen)
+			//	fmt.Println(g)
 			d.Groups = append(d.Groups, g)
 			g = Group{}
 			seen = map[rune]int{}
@@ -78,10 +78,10 @@ func (d *Day6) ReadFile(path string) error {
 					g.AllAnswers = g.AllAnswers + 1
 				}
 			}
-			fmt.Println(seen)
-			fmt.Println(g)
+			//	fmt.Println(seen)
+			//	fmt.Println(g)
 			d.Groups = append(d.Groups, g)
-			fmt.Println(err.Error())
+			//fmt.Println(err.Error())
 			break
 		}
 	}

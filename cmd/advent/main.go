@@ -18,6 +18,7 @@ func check(e error) {
 
 func main() {
 	dayToRun := flag.Int("day", -1, "Specify which day to run")
+	all := flag.Bool("all", false, "Run All Days")
 	cpuprofile := flag.String("cpuprofile", "", "write cpu profile to file")
 	flag.Parse()
 	if *cpuprofile != "" {
@@ -31,10 +32,13 @@ func main() {
 	var days []day.Day
 	if dayToRun != nil && *dayToRun != -1 {
 		days = []day.Day{day.GetDay(*dayToRun)}
+	} else if all != nil && *all {
+		days = day.GetDays()
 	} else {
 		days = []day.Day{day.GetToday()}
 	}
 	fmt.Println("Running ", len(days), " days")
+	zero := time.Now()
 	for i, d := range days {
 		start := time.Now()
 		d.ReadFile("../../day" + fmt.Sprint(i+1) + ".txt")
@@ -47,4 +51,6 @@ func main() {
 		elapsed = time.Since(start)
 		fmt.Printf("Part 2 took %s\n", elapsed)
 	}
+
+	fmt.Printf("Total Time Elapsed: %s\n", time.Since(zero))
 }

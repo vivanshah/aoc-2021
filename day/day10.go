@@ -65,7 +65,7 @@ func (d *Day10) Part1() {
 // Part2 executes part 2 of of this day's puzzle
 func (d *Day10) Part2() {
 	fmt.Println("Day 10 Part 2")
-	fmt.Println("Target: ", d.Target)
+	//fmt.Println("Target: ", d.Target)
 	d.aM = map[int][]int{}
 	for _, i := range d.Adapters {
 		if d.aM[i] == nil {

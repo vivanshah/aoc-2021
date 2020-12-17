@@ -46,7 +46,7 @@ func (d *Day12) Part1() {
 	var location coordinate
 	for x := 0; x < len(d.Instructions); x++ {
 		instruction := d.Instructions[x]
-		fmt.Println(instruction)
+		//fmt.Println(instruction)
 		direction := string(instruction[0])
 		if len(instruction) > 1 {
 			magnitude, _ = strconv.Atoi(instruction[1:])
@@ -61,7 +61,7 @@ func (d *Day12) Part1() {
 		case "W":
 			location.J -= magnitude
 		case "L":
-			fmt.Printf("turning left %d from %s\n", magnitude, orientation)
+			//	fmt.Printf("turning left %d from %s\n", magnitude, orientation)
 
 			for magnitude > 0 {
 				switch orientation {
@@ -76,7 +76,7 @@ func (d *Day12) Part1() {
 				}
 				magnitude -= 90
 			}
-			fmt.Printf("now facing %s\n", orientation)
+			//fmt.Printf("now facing %s\n", orientation)
 		case "R":
 			for magnitude > 0 {
 				switch orientation {
@@ -116,12 +116,12 @@ func (d *Day12) Part2() {
 	waypoint := coordinate{I: -1, J: 10}
 	for x := 0; x < len(d.Instructions); x++ {
 		instruction := d.Instructions[x]
-		fmt.Println(instruction)
+		//	fmt.Println(instruction)
 		direction := string(instruction[0])
 		if len(instruction) > 1 {
 			magnitude, _ = strconv.Atoi(instruction[1:])
 		}
-		fmt.Printf("magnitude %d. waypoint at %v\n", magnitude, waypoint)
+		//fmt.Printf("magnitude %d. waypoint at %v\n", magnitude, waypoint)
 		switch direction {
 		case "N":
 			waypoint.I -= magnitude
@@ -149,7 +149,7 @@ func (d *Day12) Part2() {
 			location.I += magnitude * waypoint.I
 			location.J += magnitude * waypoint.J
 		}
-		fmt.Println("ship at ", location, ", waypoint at ", waypoint)
+		//fmt.Println("ship at ", location, ", waypoint at ", waypoint)
 	}
 	fmt.Println(location.I, location.J)
 

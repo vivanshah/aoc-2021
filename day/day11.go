@@ -4,7 +4,6 @@ import (
 	"fmt"
 	"io/ioutil"
 	"strings"
-	"time"
 )
 
 type Day11 struct {
@@ -69,7 +68,7 @@ func (d *Day11) Part1() {
 			}
 		}
 		if len(seatsToOccupy) == 0 && len(seatsToVacate) == 0 {
-			d.printGrid()
+			//	d.printGrid()
 			d.CountOccupied()
 			break
 		}
@@ -79,10 +78,10 @@ func (d *Day11) Part1() {
 		for _, s := range seatsToOccupy {
 			d.Seats[s] = 2
 		}
-		if c%2 == 0 {
+		/*if c%2 == 0 {
 			d.printGrid()
 			time.Sleep(100 * time.Millisecond)
-		}
+		}*/
 		c++
 	}
 
@@ -207,7 +206,7 @@ func (d *Day11) Part2() {
 		}
 		//	fmt.Println(c, len(seatsToOccupy), len(seatsToVacate))
 		if len(seatsToOccupy) == 0 && len(seatsToVacate) == 0 {
-			d.printGrid()
+			//d.printGrid()
 			d.CountOccupied()
 			break
 		}
@@ -219,10 +218,10 @@ func (d *Day11) Part2() {
 		}
 
 		c++
-		if c%2 == 0 {
+		/*if c%2 == 0 {
 			d.printGrid()
 			time.Sleep(100 * time.Millisecond)
-		}
+		}*/
 
 	}
 }

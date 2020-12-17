@@ -113,34 +113,34 @@ func (d *Day4) Part2() {
 	for _, p := range d.Passports {
 		if p.byr != nil && p.iyr != nil && p.hgt != "" && p.eyr != nil && p.hcl != "" && p.ecl != "" && p.pid != "" {
 			if !(*p.byr >= 1920 && *p.byr <= 2020) {
-				fmt.Println("invalid birth year ", *p.byr)
+				//fmt.Println("invalid birth year ", *p.byr)
 				continue
 			}
 			if !(*p.iyr >= 2010 && *p.iyr <= 2020) {
-				fmt.Println("invalid issue year ", *p.iyr)
+				//fmt.Println("invalid issue year ", *p.iyr)
 				continue
 			}
 			if !(*p.eyr >= 2020 && *p.eyr <= 2030) {
-				fmt.Println("invalid expiry year ", *p.eyr)
+				//	fmt.Println("invalid expiry year ", *p.eyr)
 				continue
 			}
 			h, _ := regexp.MatchString("^[0-9]*(cm|in)", p.hgt)
 			if !h {
-				fmt.Println("invalid height string", p.hgt)
+				//fmt.Println("invalid height string", p.hgt)
 				continue
 			}
 			if strings.HasSuffix(p.hgt, "cm") {
 				var h int
 				fmt.Sscanf(p.hgt, "%dcm", &h)
 				if !(h >= 150 && h <= 193) {
-					fmt.Println("invalid height: ", p.hgt)
+					//	fmt.Println("invalid height: ", p.hgt)
 					continue
 				}
 			} else if strings.HasSuffix(p.hgt, "in") {
 				var h int
 				fmt.Sscanf(p.hgt, "%din", &h)
 				if !(h >= 59 && h <= 76) {
-					fmt.Println("invalid height: ", p.hgt)
+					//	fmt.Println("invalid height: ", p.hgt)
 					continue
 				}
 			}

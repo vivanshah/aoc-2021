@@ -70,15 +70,15 @@ func (d *Day3) CountTreesForSlope(right, down int) int {
 	col = 0
 	row = 0
 	trees := 0
-	fmt.Println(len(d.Trees), len(d.Trees[0]))
+	//	fmt.Println(len(d.Trees), len(d.Trees[0]))
 	for {
 
 		if d.Trees[row][col] == 1 {
 			trees++
 
 		}
-		fmt.Println("Row: ", row, " Col: ", col, " Tree: ", d.Trees[row][col])
-		fmt.Println("Trees: ", trees)
+		//	fmt.Println("Row: ", row, " Col: ", col, " Tree: ", d.Trees[row][col])
+		//	fmt.Println("Trees: ", trees)
 		col += right
 		row += down
 		if col >= len(d.Trees[0]) {
