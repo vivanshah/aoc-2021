@@ -47,27 +47,35 @@ func (d *Day1) ReadFile(path string) error {
 // Part1 executes part 1 of of this day's puzzle
 func (d *Day1) Part1() {
 	fmt.Println("Day 1 Part 1")
-	m := map[int]bool{}
-	for _, e := range d.Entries {
-		m[e] = true
-		if m[2020-e] {
-			fmt.Printf("%d * %d = %d\n", e, 2020-e, e*(2020-e))
-			return
+	c := 0
+	for i, e := range d.Entries {
+		if i > 0 {
+			if e > d.Entries[i-1] {
+				c++
+			}
 		}
 	}
+	fmt.Println(c)
 }
 
 // Part2 executes part 2 of of this day's puzzle
 func (d *Day1) Part2() {
-	for _, i := range d.Entries {
-		t := 2020 - i
-		m := map[int]bool{}
-		for _, e := range d.Entries {
-			m[e] = true
-			if m[t-e] {
-				fmt.Printf("%d * %d * %d = %d\n", e, t-i, i, i*e*(t-e))
-				return
+	fmt.Println("Day 1 Part 2")
+	sums := []int{}
+	for i := 2; i < len(d.Entries); i++ {
+
+		s := d.Entries[i] + d.Entries[i-1] + d.Entries[i-2]
+		sums = append(sums, s)
+
+	}
+	c := 0
+	for i, v := range sums {
+		fmt.Println(v)
+		if i > 0 {
+			if v > sums[i-1] {
+				c++
 			}
 		}
 	}
+	fmt.Println(c)
 }

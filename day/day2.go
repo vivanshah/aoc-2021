@@ -5,18 +5,12 @@ import (
 	"fmt"
 	"io"
 	"os"
+	"strconv"
 	"strings"
 )
 
 type Day2 struct {
-	Entries []PasswordEntry
-}
-
-type PasswordEntry struct {
-	Password string
-	Min      int
-	Max      int
-	Letter   rune
+	Entries []int
 }
 
 // ReadFile reads a file and returns a slice of strings, one for
@@ -27,7 +21,7 @@ func (d *Day2) ReadFile(path string) error {
 		return err
 	}
 	defer file.Close()
-	d.Entries = []PasswordEntry{}
+	d.Entries = []int{}
 	// Start reading from the file with a reader.
 	reader := bufio.NewReader(file)
 	var line string
@@ -36,11 +30,9 @@ func (d *Day2) ReadFile(path string) error {
 		if err != nil && err != io.EOF {
 			break
 		}
-
 		line = strings.TrimSuffix(line, "\n")
-		entry := PasswordEntry{}
-		fmt.Sscanf(line, "%d-%d %c: %s", &entry.Min, &entry.Max, &entry.Letter, &entry.Password)
-		d.Entries = append(d.Entries, entry)
+		i, _ := strconv.Atoi(line)
+		d.Entries = append(d.Entries, i)
 		if err != nil {
 			break
 		}
@@ -49,39 +41,41 @@ func (d *Day2) ReadFile(path string) error {
 		fmt.Printf(" > Failed with error: %v\n", err)
 		return err
 	}
-	fmt.Println("Finished reading input")
 	return nil
 }
 
 // Part1 executes part 1 of of this day's puzzle
 func (d *Day2) Part1() {
-	fmt.Println("Day 2 Part 1")
-	valid := 0
-	for _, e := range d.Entries {
-		i := 0
-		for _, c := range e.Password {
-			if c == e.Letter {
-				i++
+	fmt.Println("Day 1 Part 1")
+	c := 0
+	for i, e := range d.Entries {
+		if i > 0 {
+			if e > d.Entries[i-1] {
+				c++
 			}
 		}
-		if i >= e.Min && i <= e.Max {
-			valid++
-		}
-
 	}
-	fmt.Println(valid)
+	fmt.Println(c)
 }
 
 // Part2 executes part 2 of of this day's puzzle
 func (d *Day2) Part2() {
-	fmt.Println("Day 2 Part 2")
-	valid := 0
-	for _, e := range d.Entries {
-		p1 := rune(e.Password[e.Min-1]) == e.Letter
-		p2 := rune(e.Password[e.Max-1]) == e.Letter
-		if (p1 || p2) && !(p1 && p2) {
-			valid++
+	fmt.Println("Day 1 Part 2")
+	sums := []int{}
+	for i := 2; i < len(d.Entries); i++ {
+
+		s := d.Entries[i] + d.Entries[i-1] + d.Entries[i-2]
+		sums = append(sums, s)
+
+	}
+	c := 0
+	for i, v := range sums {
+		fmt.Println(v)
+		if i > 0 {
+			if v > sums[i-1] {
+				c++
+			}
 		}
 	}
-	fmt.Println(valid)
+	fmt.Println(c)
 }
