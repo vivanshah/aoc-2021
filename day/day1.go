@@ -13,6 +13,10 @@ type Day1 struct {
 	Entries []int
 }
 
+func (d *Day1) GetDayNumber() int {
+	return 1
+}
+
 // ReadFile reads a file and returns a slice of strings, one for
 // each line
 func (d *Day1) ReadFile(path string) error {

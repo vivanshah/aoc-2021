@@ -39,13 +39,14 @@ func main() {
 	}
 	fmt.Println("Running ", len(days), " days")
 	zero := time.Now()
-	for i, d := range days {
+	for _, d := range days {
+		n := d.GetDayNumber()
 		start := time.Now()
-		d.ReadFile("../../day" + fmt.Sprint(i+1) + ".txt")
+		d.ReadFile(fmt.Sprintf("../../day%d.txt", n))
 		d.Part1()
 		elapsed := time.Since(start)
 		fmt.Printf("Part 1 took %s\n", elapsed)
-		d.ReadFile("../../day" + fmt.Sprint(i+1) + ".txt")
+		d.ReadFile(fmt.Sprintf("../../day%d.txt", n))
 		start = time.Now()
 		d.Part2()
 		elapsed = time.Since(start)

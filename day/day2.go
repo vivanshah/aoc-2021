@@ -5,12 +5,20 @@ import (
 	"fmt"
 	"io"
 	"os"
-	"strconv"
 	"strings"
 )
 
 type Day2 struct {
-	Entries []int
+	Commands []Command
+}
+
+type Command struct {
+	Direction string
+	Distance  int
+}
+
+func (d *Day2) GetDayNumber() int {
+	return 2
 }
 
 // ReadFile reads a file and returns a slice of strings, one for
@@ -21,7 +29,7 @@ func (d *Day2) ReadFile(path string) error {
 		return err
 	}
 	defer file.Close()
-	d.Entries = []int{}
+	d.Commands = []Command{}
 	// Start reading from the file with a reader.
 	reader := bufio.NewReader(file)
 	var line string
@@ -31,8 +39,9 @@ func (d *Day2) ReadFile(path string) error {
 			break
 		}
 		line = strings.TrimSuffix(line, "\n")
-		i, _ := strconv.Atoi(line)
-		d.Entries = append(d.Entries, i)
+		var c Command
+		_, err := fmt.Sscanf(line, "%s %d", &c.Direction, &c.Distance)
+		d.Commands = append(d.Commands, c)
 		if err != nil {
 			break
 		}
@@ -46,36 +55,39 @@ func (d *Day2) ReadFile(path string) error {
 
 // Part1 executes part 1 of of this day's puzzle
 func (d *Day2) Part1() {
-	fmt.Println("Day 1 Part 1")
-	c := 0
-	for i, e := range d.Entries {
-		if i > 0 {
-			if e > d.Entries[i-1] {
-				c++
-			}
+	fmt.Println("Day 2 Part 1")
+	var position, depth int
+	for _, c := range d.Commands {
+		fmt.Println(c.Direction, c.Distance)
+		switch c.Direction {
+		case "forward":
+			position += c.Distance
+		case "down":
+			depth += c.Distance
+		case "up":
+			depth -= c.Distance
+
 		}
 	}
-	fmt.Println(c)
+	fmt.Println(position * depth)
 }
 
 // Part2 executes part 2 of of this day's puzzle
 func (d *Day2) Part2() {
-	fmt.Println("Day 1 Part 2")
-	sums := []int{}
-	for i := 2; i < len(d.Entries); i++ {
-
-		s := d.Entries[i] + d.Entries[i-1] + d.Entries[i-2]
-		sums = append(sums, s)
-
-	}
-	c := 0
-	for i, v := range sums {
-		fmt.Println(v)
-		if i > 0 {
-			if v > sums[i-1] {
-				c++
-			}
+	fmt.Println("Day 2 Part 2")
+	var position, depth, aim int
+	for _, c := range d.Commands {
+		fmt.Println(c.Direction, c.Distance)
+		switch c.Direction {
+		case "forward":
+			position += c.Distance
+			depth = depth + aim*c.Distance
+		case "down":
+			aim += c.Distance
+		case "up":
+			aim -= c.Distance
 		}
 	}
-	fmt.Println(c)
+	fmt.Printf("Position: %d Depth: %d\n", position, depth)
+	fmt.Println(position * depth)
 }

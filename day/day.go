@@ -7,6 +7,7 @@ type Day interface {
 	ReadFile(path string) error
 	Part1()
 	Part2()
+	GetDayNumber() int
 }
 
 // GetToday calculates the current day of the month
@@ -28,5 +29,6 @@ func GetDays() []Day {
 	return []Day{
 		&Day1{},
 		&Day2{},
+		&Day3{},
 	}
 }
